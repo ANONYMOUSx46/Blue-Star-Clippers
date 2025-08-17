@@ -1,0 +1,215 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Blue-Star Clippers Design System - Glassmorphism Aesthetic
+All colors MUST be HSL for proper theming.
+*/
+
+@layer base {
+  :root {
+    /* Core glassmorphism background */
+    --background: 210 45% 8%;
+    --foreground: 210 40% 98%;
+    
+    /* Glassmorphism glass panels */
+    --glass: 210 30% 15%;
+    --glass-border: 210 40% 25%;
+    --glass-glow: 168 76% 42%;
+    
+    /* Blue-Star brand colors */
+    --brand-blue: 210 75% 22%;
+    --brand-silver: 204 8% 76%;
+    --brand-cyan: 168 76% 42%;
+    --brand-gold: 48 95% 53%;
+    
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210, 75%, 22%) 0%, hsl(210, 65%, 35%) 50%, hsl(168, 76%, 42%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(210, 30%, 15% / 0.7) 0%, hsl(210, 40%, 20% / 0.5) 100%);
+    --gradient-accent: linear-gradient(90deg, hsl(168, 76%, 42%) 0%, hsl(48, 95%, 53%) 100%);
+
+    /* Card glassmorphism */
+    --card: 210 30% 15% / 0.7;
+    --card-foreground: 210 40% 98%;
+
+    /* Popover glassmorphism */
+    --popover: 210 30% 15% / 0.9;
+    --popover-foreground: 210 40% 98%;
+
+    /* Primary brand colors */
+    --primary: 210 75% 22%;
+    --primary-foreground: 210 40% 98%;
+
+    /* Secondary silver tones */
+    --secondary: 204 8% 76%;
+    --secondary-foreground: 210 75% 22%;
+
+    /* Muted glass effects */
+    --muted: 210 30% 20% / 0.5;
+    --muted-foreground: 210 30% 70%;
+
+    /* Accent cyan highlights */
+    --accent: 168 76% 42%;
+    --accent-foreground: 210 40% 98%;
+
+    /* Destructive states */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Borders and inputs with glassmorphism */
+    --border: 210 40% 25% / 0.3;
+    --input: 210 30% 15% / 0.8;
+    --ring: 168 76% 42%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    /* Core glassmorphism background - lighter for dark mode */
+    --background: 210 50% 3%;
+    --foreground: 210 40% 98%;
+    
+    /* Enhanced glassmorphism for dark mode */
+    --glass: 210 40% 8%;
+    --glass-border: 210 50% 15%;
+    --glass-glow: 168 76% 42%;
+    
+    /* Brand colors remain consistent */
+    --brand-blue: 210 75% 22%;
+    --brand-silver: 204 8% 76%;
+    --brand-cyan: 168 76% 42%;
+    --brand-gold: 48 95% 53%;
+    
+    /* Dark mode gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(210, 50%, 3%) 0%, hsl(210, 60%, 8%) 50%, hsl(168, 76%, 15%) 100%);
+    --gradient-glass: linear-gradient(135deg, hsl(210, 40%, 8% / 0.8) 0%, hsl(210, 50%, 12% / 0.6) 100%);
+
+    --card: 210 40% 8% / 0.8;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 210 40% 8% / 0.9;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 168 76% 42%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 204 8% 76%;
+    --secondary-foreground: 210 50% 3%;
+
+    --muted: 210 40% 12% / 0.6;
+    --muted-foreground: 210 30% 70%;
+
+    --accent: 168 76% 42%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 210 50% 15% / 0.4;
+    --input: 210 40% 8% / 0.9;
+    --ring: 168 76% 42%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-hero);
+    background-attachment: fixed;
+    transition: background 0.3s ease-in-out;
+  }
+}
+
+@layer utilities {
+  /* Glassmorphism utilities */
+  .glass {
+    background: var(--gradient-glass);
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--glass-border) / 0.3);
+    box-shadow: 0 8px 32px hsl(var(--glass-glow) / 0.1);
+  }
+  
+  .glass-glow {
+    box-shadow: 0 0 20px hsl(var(--glass-glow) / 0.3), 
+                0 8px 32px hsl(var(--glass-glow) / 0.1);
+  }
+  
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Smooth animations */
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 20px hsl(var(--glass-glow) / 0.3);
+  }
+  to {
+    box-shadow: 0 0 30px hsl(var(--glass-glow) / 0.6);
+  }
+}
