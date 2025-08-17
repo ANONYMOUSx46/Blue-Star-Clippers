@@ -31,7 +31,7 @@ const BookingForm = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     if (!formData.name || !formData.surname || !formData.phone || !formData.service || !formData.location || !date) {
@@ -43,15 +43,52 @@ const BookingForm = () => {
       return;
     }
 
-    const locationText = formData.location === "house-call" ? "house call" : "barber shop visit";
-    toast({
-      title: "Booking Request Sent! ✂️", 
-      description: `Thanks ${formData.name}! We'll contact you soon with pricing and to confirm your ${formData.service} ${locationText}.`,
-    });
+    // Create FormData object for Netlify
+    const formDataToSend = new FormData();
+    formDataToSend.append('form-name', 'booking-form');
+    formDataToSend.append('name', formData.name);
+    formDataToSend.append('surname', formData.surname);
+    formDataToSend.append('phone', formData.phone);
+    formDataToSend.append('service', formData.service);
+    formDataToSend.append('location', formData.location);
+    formDataToSend.append('date', date ? format(date, "yyyy-MM-dd") : '');
 
-    // Reset form
-    setFormData({ name: "", surname: "", phone: "", service: "", location: "" });
-    setDate(undefined);
+    try {
+      // Submit to Netlify
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({
+          'form-name': 'booking-form',
+          'name': formData.name,
+          'surname': formData.surname,
+          'phone': formData.phone,
+          'service': formData.service,
+          'location': formData.location,
+          'date': date ? format(date, "yyyy-MM-dd") : ''
+        }).toString()
+      });
+
+      if (response.ok) {
+        const locationText = formData.location === "house-call" ? "house call" : "barber shop visit";
+        toast({
+          title: "Booking Request Sent! ✂️", 
+          description: `Thanks ${formData.name}! We'll contact you soon with pricing and to confirm your ${formData.service} ${locationText}.`,
+        });
+
+        // Reset form
+        setFormData({ name: "", surname: "", phone: "", service: "", location: "" });
+        setDate(undefined);
+      } else {
+        throw new Error('Failed to submit');
+      }
+    } catch (error) {
+      toast({
+        title: "Submission Error",
+        description: "There was an issue submitting your booking. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {
