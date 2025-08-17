@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <title>Blue-Star Clippers | Home Barbering by Seth Pass</title>
+    <meta name="description" content="Premium barbering services with modern glassmorphism aesthetic. Expert cuts including fades, shaves, and styling by Seth Pass. Book your appointment today!" />
+    <meta name="author" content="Liam De Wet" />
+    <meta name="keywords" content="barber, haircut, fade, shave, barbering, Blue-Star Clippers, Seth Pass, professional cuts" />
+
+    <meta property="og:title" content="Blue-Star Clippers | It's All in the Cut" />
+    <meta property="og:description" content="Professional home-based barbering services. Expert cuts, fades, and styling in a modern comfortable environment." />
+    <meta property="og:type" content="website" />
+   
+
+    <meta name="twitter:card" content="summary_large_image" />
+
+  </head>
+
+  <body>
+    <div id="root"></div>
+    
+    <!-- Netlify Form (hidden fallback) -->
+    <form name="booking-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" style="display: none;">
+      <input type="hidden" name="form-name" value="booking-form" />
+      <input type="hidden" name="bot-field" />
+      <input type="text" name="name" required />
+      <input type="text" name="surname" required />
+      <input type="tel" name="phone" required />
+      <select name="service" required>
+        <option value="Clean Cut">Clean Cut</option>
+        <option value="Taper Fade">Taper Fade</option>
+        <option value="Mid Fade">Mid Fade</option>
+        <option value="High Fade">High Fade</option>
+        <option value="Buzz Cut">Buzz Cut</option>
+        <option value="Shave">Shave</option>
+      </select>
+      <select name="location" required>
+        <option value="house-call">House Call</option>
+        <option value="barber-shop">Barber Shop Visit</option>
+      </select>
+      <input type="date" name="date" required />
+    </form>
+    
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
