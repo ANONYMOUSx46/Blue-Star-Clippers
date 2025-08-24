@@ -48,9 +48,9 @@ const HeroSection = () => {
           <div className="glass glass-glow border-glass-border/30 rounded-lg p-8">
             <h3 className="text-2xl md:text-3xl font-bold text-gradient mb-6">About Seth Pass's Journey</h3>
             <p className="text-muted-foreground leading-relaxed text-left space-y-4">
-              <span>From humble beginnings in a garage, Blue-Star Clippers was born out of a dream-to redefine what it mean to be a barber. This isnt just a brand; it's the foundation of a legacy in the making. I'm not just a young man withclippers in hand- I'm an artist with a vision, commited to transforming every haircut into a statement of confidence and style.</span>
+              <span>From humble beginnings in a garage, Blue-Star Clippers was born out of a dream, to redefine what it means to be a barber. This isnt just a brand; it's the foundation of a legacy in the making. I'm not just a young man with clippers in hand. I'm an artist with a vision, commited to transforming every haircut into a statement of confidence and style.</span>
               
-              <span>At Blue-Star Clippers, the goal goes beyond grooming. I strive to deliver an experience that leaves every client feeling renewed, empowered, and seen. It's about precision, passion, and personal connection. Every fade, line-up, and trim is a step toward building something greater-not just for myself, but for everyone who walks through my door.</span>
+              <span> At Blue-Star Clippers, the goal goes beyond grooming. I strive to deliver an experience that leaves every client feeling renewed, empowered, and seen. It's about precision, passion, and personal connection. Every fade, line-up, and trim is a step toward building something greater-not just for myself, but for everyone who walks through my door.</span>
               
               <span className="block font-semibold text-accent">This is the beginning of a legacy.</span>
             </p>
