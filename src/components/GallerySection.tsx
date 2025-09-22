@@ -16,7 +16,7 @@ const galleryImages = [
   {
     id: 2,
     src: beforeAfter2,
-    title: "Buzz Cut/ 0-Fade",
+    title: "Buzz Cut/ Low Fade",
     description: "Fresh buzz cut for a clean, professional look"
   },
   {
