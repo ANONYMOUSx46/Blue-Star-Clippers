@@ -58,7 +58,7 @@ const BookingForm = () => {
       `Please contact the customer to confirm pricing and availability.`;
 
     // WhatsApp URL with encoded message
-    const whatsappURL = `https://wa.me/+27794137016?text=${message}`;
+    const whatsappURL = `https://wa.me/+27670062448?text=${message}`;
 
     try {
       // Open WhatsApp with pre-filled message
