@@ -13,7 +13,7 @@ import { useToast } from "@/hooks/use-toast";
 
 const services = [
   "Clean Cut",
-  "Taper Fade", 
+  "Taper Fade",
   "Mid Fade",
   "High Fade",
   "Buzz Cut",
@@ -31,9 +31,9 @@ const BookingForm = () => {
   });
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.surname || !formData.phone || !formData.service || !formData.location || !date) {
       toast({
         title: "Please fill in all fields",
@@ -43,49 +43,40 @@ const BookingForm = () => {
       return;
     }
 
-    // Create FormData object for Netlify
-    const formDataToSend = new FormData();
-    formDataToSend.append('form-name', 'booking-form');
-    formDataToSend.append('name', formData.name);
-    formDataToSend.append('surname', formData.surname);
-    formDataToSend.append('phone', formData.phone);
-    formDataToSend.append('service', formData.service);
-    formDataToSend.append('location', formData.location);
-    formDataToSend.append('date', date ? format(date, "yyyy-MM-dd") : '');
+    // Create structured WhatsApp message
+    const locationText = formData.location === "house-call" ? "House Call (I'll come to you)" : "Barber Shop Visit";
+    const formattedDate = format(date, "EEEE, MMMM do, yyyy");
+
+    const message = `🌟 NEW BOOKING REQUEST 🌟%0A%0A` +
+      `👤 Customer Details:%0A` +
+      `Name: ${formData.name} ${formData.surname}%0A` +
+      `Phone: ${formData.phone}%0A%0A` +
+      `✂️ Service Details:%0A` +
+      `Service: ${formData.service}%0A` +
+      `Location: ${locationText}%0A` +
+      `Preferred Date: ${formattedDate}%0A%0A` +
+      `Please contact the customer to confirm pricing and availability.`;
+
+    // WhatsApp URL with encoded message
+    const whatsappURL = `https://wa.me/+27794137016?text=${message}`;
 
     try {
-      // Submit to Netlify
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams({
-          'form-name': 'booking-form',
-          'name': formData.name,
-          'surname': formData.surname,
-          'phone': formData.phone,
-          'service': formData.service,
-          'location': formData.location,
-          'date': date ? format(date, "yyyy-MM-dd") : ''
-        }).toString()
+      // Open WhatsApp with pre-filled message
+      window.open(whatsappURL, '_blank');
+
+      const locationText = formData.location === "house-call" ? "house call" : "barber shop visit";
+      toast({
+        title: "WhatsApp Message Sent! 📱",
+        description: `Hi ${formData.name}! Your booking request has been sent to Seth via WhatsApp. He'll contact you soon about your ${formData.service} ${locationText}.`,
       });
 
-      if (response.ok) {
-        const locationText = formData.location === "house-call" ? "house call" : "barber shop visit";
-        toast({
-          title: "Booking Request Sent! ✂️", 
-          description: `Thanks ${formData.name}! We'll contact you soon with pricing and to confirm your ${formData.service} ${locationText}.`,
-        });
-
-        // Reset form
-        setFormData({ name: "", surname: "", phone: "", service: "", location: "" });
-        setDate(undefined);
-      } else {
-        throw new Error('Failed to submit');
-      }
+      // Reset form
+      setFormData({ name: "", surname: "", phone: "", service: "", location: "" });
+      setDate(undefined);
     } catch (error) {
       toast({
-        title: "Submission Error",
-        description: "There was an issue submitting your booking. Please try again.",
+        title: "Error Opening WhatsApp",
+        description: "There was an issue opening WhatsApp. Please make sure WhatsApp is installed or try contacting Seth directly.",
         variant: "destructive"
       });
     }
@@ -119,7 +110,7 @@ const BookingForm = () => {
               Fill in your details to book your next cut
             </CardDescription>
           </CardHeader>
-          
+
           <CardContent>
             <form name="booking-form" method="POST" data-netlify="true" data-netlify-honeypot="bot-field" onSubmit={handleSubmit} className="space-y-6">
               <input type="hidden" name="form-name" value="booking-form" />
@@ -141,7 +132,7 @@ const BookingForm = () => {
                     required
                   />
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="surname" className="text-foreground flex items-center gap-2">
                     <User className="w-4 h-4" />
@@ -254,7 +245,7 @@ const BookingForm = () => {
                 size="lg"
                 className="w-full text-lg py-6"
               >
-                Book Appointment
+                Send WhatsApp Booking
               </Button>
             </form>
           </CardContent>
