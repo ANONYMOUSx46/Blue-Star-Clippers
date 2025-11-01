@@ -14,6 +14,7 @@ import { useToast } from "@/hooks/use-toast";
 const services = [
   "Clean Cut",
   "Taper Fade",
+  "Low Fade"
   "Mid Fade",
   "High Fade",
   "Buzz Cut",
