@@ -17,6 +17,7 @@ const services = [
   "Low Fade"
   "Mid Fade",
   "High Fade",
+  "Low Fade",
   "Buzz Cut",
   "Shave"
 ];
@@ -26,7 +27,6 @@ const BookingForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     surname: "",
-    phone: "",
     service: "",
     location: ""
   });
@@ -151,23 +151,7 @@ const BookingForm = () => {
                 </div>
               </div>
 
-              {/* Phone Number */}
-              <div className="space-y-2">
-                <Label htmlFor="phone" className="text-foreground flex items-center gap-2">
-                  <Phone className="w-4 h-4" />
-                  Phone Number
-                </Label>
-                <Input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  placeholder="Enter your phone number"
-                  value={formData.phone}
-                  onChange={(e) => handleInputChange("phone", e.target.value)}
-                  className="glass border-glass-border/50 focus:ring-accent"
-                  required
-                />
-              </div>
+              
 
               {/* Service Selection */}
               <div className="space-y-2">
