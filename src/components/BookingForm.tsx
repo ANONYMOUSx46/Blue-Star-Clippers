@@ -14,7 +14,6 @@ import { useToast } from "@/hooks/use-toast";
 const services = [
   "Clean Cut",
   "Taper Fade",
-  "Low Fade"
   "Mid Fade",
   "High Fade",
   "Low Fade",
@@ -35,7 +34,7 @@ const BookingForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.surname || !formData.phone || !formData.service || !formData.location || !date) {
+    if (!formData.name || !formData.surname ||  !formData.service || !formData.location || !date) {
       toast({
         title: "Please fill in all fields",
         description: "All information is required to book your appointment.",
@@ -51,7 +50,7 @@ const BookingForm = () => {
     const message = `🌟 NEW BOOKING REQUEST 🌟%0A%0A` +
       `👤 Customer Details:%0A` +
       `Name: ${formData.name} ${formData.surname}%0A` +
-      `Phone: ${formData.phone}%0A%0A` +
+      
       `✂️ Service Details:%0A` +
       `Service: ${formData.service}%0A` +
       `Location: ${locationText}%0A` +
@@ -72,7 +71,7 @@ const BookingForm = () => {
       });
 
       // Reset form
-      setFormData({ name: "", surname: "", phone: "", service: "", location: "" });
+      setFormData({ name: "", surname: "",  service: "", location: "" });
       setDate(undefined);
     } catch (error) {
       toast({
