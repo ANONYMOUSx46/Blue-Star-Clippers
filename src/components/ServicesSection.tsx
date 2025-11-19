@@ -33,6 +33,13 @@ const services = [
     backgroundImage: barberBg2,
     features: ["High contrast", "Precision cutting", "Distinctive look"]
   },
+    {
+    name: "Low Fade",
+    description: "Stylish low fade with precise look",
+    icon: Scissors,
+    backgroundImage: barberBg2,
+    features: ["Even length", "Low maintenance", "Timeless style"]
+  },
   {
     name: "Buzz Cut",
     description: "Classic short cut with uniform length",
